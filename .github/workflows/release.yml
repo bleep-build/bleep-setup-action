@@ -29,6 +29,8 @@ jobs:
           gunzip -c $HOME/auto-linux.gz > $HOME/auto
           chmod a+x $HOME/auto
           echo $HOME >> $GITHUB_PATH
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Update release branch
         run: |
