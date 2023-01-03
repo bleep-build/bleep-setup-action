@@ -20,7 +20,6 @@ jobs:
 #          app_id: 103842
 #          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - run: |
-#          echo "GH_TOKEN=${{ steps.generate-token.outputs.token }}" >> $GITHUB_ENV
           git config --global user.name "bleep-bot"
           git config --global user.email "bleep-bot@users.noreply.github.com"
 
