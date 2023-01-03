@@ -7,18 +7,9 @@ async function downloadBleep(version: string): Promise<void> {
   const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep`
 
   const unixLike = async (url: string): Promise<void> => {
-    // eslint-disable-next-line no-console
-    console.warn(`url: ${url}`)
     const guid = await tc.downloadTool(url)
-    // eslint-disable-next-line no-console
-    console.warn(`guid: ${guid}`)
     const extracted = await tc.extractTar(guid)
-    // eslint-disable-next-line no-console
-    console.warn(`extracted: ${extracted}`)
     const cachedDir = await tc.cacheDir(extracted, 'bleep', version)
-    // eslint-disable-next-line no-console
-    console.warn(`cachedFile: ${cachedDir}`)
-    // fs.chmodSync(`${cachedDir}/bleep`, '+x')
     core.addPath(cachedDir)
   }
 
