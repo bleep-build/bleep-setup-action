@@ -18,10 +18,10 @@ jobs:
 #        with:
 #          app_id: 103842
 #          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-#      - run: |
+      - run: |
 #          echo "GH_TOKEN=${{ steps.generate-token.outputs.token }}" >> $GITHUB_ENV
-#          git config --global user.name "laughedelic[bot]"
-#          git config --global user.email "103842+laughedelic[bot]@users.noreply.github.com"
+          git config --global user.name "bleep-bot"
+          git config --global user.email "bleep-bot@users.noreply.github.com"
 
       - name: Install Auto
         run: |
