@@ -5,7 +5,7 @@ import * as yaml from 'yaml'
 import path from 'path'
 
 async function downloadBleep(version: string): Promise<string> {
-  const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep-`
+  const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep`
 
   const unixLike = async (url: string): Promise<string> => {
     // eslint-disable-next-line no-console
