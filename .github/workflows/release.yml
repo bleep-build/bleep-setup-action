@@ -54,3 +54,5 @@ jobs:
       - name: Create Release
         run: |
           auto latest --base-branch release/v1
+        env:
+          GH_TOKEN: ${{ github.token }}
