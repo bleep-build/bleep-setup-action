@@ -1,25 +1,9 @@
-name: 'coursier-setup-action'
-description: 'Use Coursier to install JVM and Scala apps'
-author: 'Alexey Alekhin'
+name: 'bleep-setup-action'
+description: 'Github actions which lets you use the Bleep JVM build tool'
+author: 'Øyvind Raddum Berg'
 branding:
   icon: 'anchor'
   color: 'green'
-inputs:
-  jvm:
-    description: 'JVM to install (leave empty to use default)'
-    required: false
-    default: ''
-  apps:
-    description: 'Applications to install'
-    required: false
-    default: 'sbtn'
-  version:
-    description: 'Coursier version to install'
-    required: false
-    default: ''
-outputs:
-  cs-version:
-    description: 'Version of the installed Coursier'
 runs:
   using: 'node16'
   main: 'dist/index.js'

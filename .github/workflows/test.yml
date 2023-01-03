@@ -11,7 +11,6 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        jvm: ['8', '11']
     steps:
     - uses: actions/checkout@v3
 
@@ -22,28 +21,16 @@ jobs:
         npm install
         npm run all
 
-    # create an sbt file to enabling sbt caching
-    - run: echo 'name := "foo"' > build.sbt
-    - id: cs-setup
-      uses: ./
-      with:
-        jvm: ${{ matrix.jvm }}
-        apps: sbt sbtn ammonite bloop:1.4.11
+    - run: |
+        echo '$schema: https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json' >> bleep.yaml
+        echo '$version: 0.0.1-M24' >> bleep.yaml
+        echo 'projects:' >> bleep.yaml
+        echo '  a:{}' >> bleep.yaml
 
-    # - uses: coursier/cache-action@v5
-    - run: echo cs-version=${{ steps.cs-setup.outputs.cs-version }}
+    - id: bleep-setup
+      uses: ./
+
     - run: echo $PATH
 
-    # test Java
-    - run: echo $JAVA_HOME
-    - run: java -version
-    - run: cs java -version
-
-    # test installed apps
-    - run: sbtn.bat show name </dev/null
-      shell: bash
-      if: runner.os == 'Windows'
-    - run: sbtn show name
-      if: runner.os != 'Windows'
-    - run: amm --help
-    - run: bloop about
+    # test bleep
+    - run: bleep
