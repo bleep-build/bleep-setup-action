@@ -2,32 +2,28 @@ import * as core from '@actions/core'
 import * as fs from 'fs'
 import * as tc from '@actions/tool-cache'
 import * as yaml from 'yaml'
-import path from 'path'
 
-async function downloadBleep(version: string): Promise<string> {
-  const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep-`
+async function downloadBleep(version: string): Promise<void> {
+  const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep`
 
-  const unixLike = async (url: string): Promise<string> => {
+  const unixLike = async (url: string): Promise<void> => {
     const guid = await tc.downloadTool(url)
     const extracted = await tc.extractTar(guid)
-    const cachedFile = await tc.cacheFile(extracted, 'bleep', 'bleep', version)
-    fs.chmodSync(cachedFile, '+x')
-    core.addPath(path.dirname(cachedFile))
-    return cachedFile
+    const cachedDir = await tc.cacheDir(extracted, 'bleep', version)
+    core.addPath(cachedDir)
   }
 
   if (process.platform === 'linux' && process.arch === 'x64') {
-    return unixLike(`${baseUrl}-x86_64-pc-linux.tar.gz`)
+    unixLike(`${baseUrl}-x86_64-pc-linux.tar.gz`)
   } else if (process.platform === 'win32' && process.arch === 'x64') {
     const guid = await tc.downloadTool(`${baseUrl}-x86_64-pc-win32.zip`)
     const extracted = await tc.extractZip(guid)
-    const cachedFile = await tc.cacheFile(extracted, 'bleep', 'bleep', version)
-    core.addPath(path.dirname(cachedFile))
-    return cachedFile
+    const cachedDir = await tc.cacheDir(extracted, 'bleep', version)
+    core.addPath(cachedDir)
   } else if (process.platform === 'darwin' && process.arch === 'x64') {
-    return unixLike(`${baseUrl}-x86_64-apple-darwin.tar.gz`)
+    unixLike(`${baseUrl}-x86_64-apple-darwin.tar.gz`)
   } else if (process.platform === 'darwin' && process.arch === 'arm64') {
-    return unixLike(`${baseUrl}-arm64-apple-darwin.tar.gz`)
+    unixLike(`${baseUrl}-arm64-apple-darwin.tar.gz`)
   } else {
     return Promise.reject(new Error(`Not supported os/arch: ${process.platform}/${process.arch}`))
   }

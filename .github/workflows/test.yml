@@ -25,7 +25,7 @@ jobs:
         echo '$schema: https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json' >> bleep.yaml
         echo '$version: 0.0.1-M24' >> bleep.yaml
         echo 'projects:' >> bleep.yaml
-        echo '  a:{}' >> bleep.yaml
+        echo '  a: {}' >> bleep.yaml
 
     - id: bleep-setup
       uses: ./
@@ -33,4 +33,4 @@ jobs:
     - run: echo $PATH
 
     # test bleep
-    - run: bleep
+    - run: bleep projects
