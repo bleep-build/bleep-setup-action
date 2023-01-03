@@ -11,8 +11,14 @@ async function downloadBleep(version: string): Promise<string> {
     // eslint-disable-next-line no-console
     console.warn(`url: ${url}`)
     const guid = await tc.downloadTool(url)
+    // eslint-disable-next-line no-console
+    console.warn(`guid: ${guid}`)
     const extracted = await tc.extractTar(guid)
+    // eslint-disable-next-line no-console
+    console.warn(`extracted: ${extracted}`)
     const cachedFile = await tc.cacheFile(extracted, 'bleep', 'bleep', version)
+    // eslint-disable-next-line no-console
+    console.warn(`cachedFile: ${cachedFile}`)
     fs.chmodSync(cachedFile, '+x')
     core.addPath(path.dirname(cachedFile))
     return cachedFile
