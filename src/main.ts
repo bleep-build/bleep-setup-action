@@ -8,6 +8,8 @@ async function downloadBleep(version: string): Promise<string> {
   const baseUrl = `https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep-`
 
   const unixLike = async (url: string): Promise<string> => {
+    // eslint-disable-next-line no-console
+    console.warn(`url: ${url}`)
     const guid = await tc.downloadTool(url)
     const extracted = await tc.extractTar(guid)
     const cachedFile = await tc.cacheFile(extracted, 'bleep', 'bleep', version)
