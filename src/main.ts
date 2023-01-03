@@ -29,7 +29,6 @@ async function downloadBleep(version: string): Promise<void> {
     const extracted = await tc.extractZip(guid)
     const cachedDir = await tc.cacheDir(extracted, 'bleep', version)
     core.addPath(cachedDir)
-    return cachedDir
   } else if (process.platform === 'darwin' && process.arch === 'x64') {
     unixLike(`${baseUrl}-x86_64-apple-darwin.tar.gz`)
   } else if (process.platform === 'darwin' && process.arch === 'arm64') {
