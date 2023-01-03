@@ -13,13 +13,14 @@ jobs:
       - run: git fetch --unshallow --tags
 
 
-#      - name: Generate token
-#        id: generate-token
-#        uses: tibdex/github-app-token@v1
-#        with:
+      - name: Generate token
+        id: generate-token
+        uses: tibdex/github-app-token@v1
+        with:
 #          app_id: 103842
-#          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - run: |
+          echo "GH_TOKEN=${{ steps.generate-token.outputs.token }}" >> $GITHUB_ENV
           git config --global user.name "bleep-bot"
           git config --global user.email "bleep-bot@users.noreply.github.com"
 
@@ -29,8 +30,6 @@ jobs:
           gunzip -c $HOME/auto-linux.gz > $HOME/auto
           chmod a+x $HOME/auto
           echo $HOME >> $GITHUB_PATH
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Update release branch
         run: |
@@ -54,5 +53,3 @@ jobs:
       - name: Create Release
         run: |
           auto latest --base-branch release/v1
-        env:
-          GH_TOKEN: ${{ github.token }}
