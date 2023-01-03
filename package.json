@@ -2,7 +2,7 @@
   "name": "bleep-setup-action",
   "version": "1.0.0",
   "private": true,
-  "description": "Github actions which lets you use the Bleep JVM build tool",
+  "description": "Github action which lets you use the Bleep JVM build tool",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",

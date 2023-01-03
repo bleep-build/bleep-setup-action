@@ -1,5 +1,5 @@
 name: 'bleep-setup-action'
-description: 'Github actions which lets you use the Bleep JVM build tool'
+description: 'Github action which lets you use the Bleep JVM build tool'
 author: 'Øyvind Raddum Berg'
 branding:
   icon: 'anchor'

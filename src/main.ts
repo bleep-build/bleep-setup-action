@@ -44,6 +44,9 @@ async function run(): Promise<void> {
       const bleepYamlStr = fs.readFileSync('bleep.yaml', { encoding: 'utf-8' })
       const bleepYaml = yaml.parse(bleepYamlStr)
       const version = bleepYaml['$version']
+      if (typeof version !== 'string') {
+        throw new Error(`Couldn't read \`$version\` from ${bleepYamlStr}`)
+      }
       await downloadBleep(version)
     })
   } catch (error: unknown) {
