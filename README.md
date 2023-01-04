@@ -11,3 +11,15 @@ and the blog post [Single command Scala setup](https://alexarchambault.github.io
 - run bleep on any platform: Linux, MacOS, Windows
 - will install the version you have configured in bleep.yaml
 
+## Usage:
+
+```yaml
+## check out before bleep-setup-action (it relies on reading version from checked in `bleep.yaml`)
+- uses: actions/checkout@v2
+
+# add this
+- uses: bleep-build/bleep-setup-action@0.0.1
+
+## after you can just call bleep  
+- run: bleep fmt --check
+```
