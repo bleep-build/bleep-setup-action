@@ -26,20 +26,20 @@
   "author": "Øyvind Raddum Berg",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
+    "@actions/core": "^1.11.0",
     "@actions/exec": "^1.1.1",
     "@actions/tool-cache": "^2.0.1",
-    "yaml": "^2.5.1"
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^8.18.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vercel/ncc": "^0.38.1",
-    "eslint": "^8.57.1",
-    "eslint-plugin-github": "^4.7.0",
+    "@types/node": "^22.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.30.0",
+    "@typescript-eslint/parser": "^8.30.0",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.24.0",
+    "eslint-plugin-github": "^5.1.0",
     "js-yaml": "^4.1.0",
-    "prettier": "2.8.7",
-    "typescript": "^4.8.4"
+    "prettier": "^3.5.0",
+    "typescript": "^5.8.0"
   }
 }

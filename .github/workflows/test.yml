@@ -17,13 +17,12 @@ jobs:
     - name: Build
       shell: bash -l {0}
       run: |
-        nvm use lts/gallium
         npm install
         npm run all
 
     - run: |
         echo '$schema: https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json' >> bleep.yaml
-        echo '$version: 0.0.1-M24' >> bleep.yaml
+        echo '$version: 1.0.0-M5' >> bleep.yaml
         echo 'projects:' >> bleep.yaml
         echo '  a: {}' >> bleep.yaml
 
