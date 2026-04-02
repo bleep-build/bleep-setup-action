@@ -1,9 +1,12 @@
-const globals = require('globals')
-const tseslint = require('@typescript-eslint/eslint-plugin')
-const tsparser = require('@typescript-eslint/parser')
+import globals from 'globals'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
+import github from 'eslint-plugin-github'
 
-module.exports = [
-  require('eslint-plugin-github/lib/configs/flat/recommended'),
+const flatConfigs = github.getFlatConfigs()
+
+export default [
+  flatConfigs.recommended,
   {
     files: ['src/**/*.ts'],
     languageOptions: {
